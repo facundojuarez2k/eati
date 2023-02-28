@@ -26,7 +26,7 @@ jobs:
   trabajo4:
     runs-on: ubuntu-latest
     steps:
-      - run: /etc/*release
+      - run: cat /etc/*release
   
   trabajo5:
     runs-on: ubuntu-latest
