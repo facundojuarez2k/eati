@@ -1,0 +1,17 @@
+name: First
+on: [ "push" ]
+
+jobs:
+  job1:
+    name: "Mi primer Job"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: python eati.py "EATI" "2023"
+  job2:
+    name: Job2
+    runs-on: windows-latest
+    steps:
+      - run: |
+          echo "Mi nombre es Facundo"
+          echo "Estoy haciendo un curso de GitHub Actions"
