@@ -7,19 +7,19 @@ on:
     workflow_dispatch:
 
 env:
-    WORKFLOW_VARIABLE: WORKFLOW_VARIABLE (Workflow)
-    SCOPE: SCOPE (Workflow)
+    WORKFLOW_VARIABLE: Workflow variable (Workflow)
+    SCOPE: Scope (Workflow)
 
 jobs:
     job1:
         runs-on: ubuntu-latest
         env:
-            JOB_VARIABLE: JOB_VARIABLE
-            SCOPE: SCOPE (Job)
+            JOB_VARIABLE: Job variable
+            SCOPE: Scope (Job)
         steps:
             - env:
-                  STEP_VARIABLE: STEP_VARIABLE
-                  SCOPE: SCOPE (Step)
+                  STEP_VARIABLE: Step variable
+                  SCOPE: Scope (Step)
               run: |
                   echo $WORKFLOW_VARIABLE
                   echo $JOB_VARIABLE
