@@ -27,7 +27,7 @@ jobs:
                   name: ${{ env.ARTIFACT_NAME }}
                   path: ${{ env.UPLOAD_PATH }}
     test:
-        name: "Test artifact"
+        name: "Test program"
         runs-on: ubuntu-latest
         needs: [build]
         steps:
