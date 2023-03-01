@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: jmoyano/eati2023
+          ref: main
+          path: ./main
+      - uses: actions/checkout@v3
+        with:
+          repository: jmoyano/eati2023
+          ref: anotherbranch
+          path: ./anotherbranch
+      - run: |
+          cat ./main/message.txt
+          cat ./anotherbranch/message.txt
