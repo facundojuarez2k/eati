@@ -21,12 +21,12 @@ jobs:
                   STEP_VARIABLE: Step variable
                   SCOPE: Scope (Step)
               run: |
-                  echo $WORKFLOW_VARIABLE
-                  echo $JOB_VARIABLE
-                  echo $STEP_VARIABLE
-                  echo $SCOPE
-            - run: echo $SCOPE
+                  echo "$WORKFLOW_VARIABLE"
+                  echo "$JOB_VARIABLE"
+                  echo "$STEP_VARIABLE"
+                  echo "$SCOPE"
+            - run: echo "$SCOPE"
     job2:
         runs-on: ubuntu-latest
         steps:
-            - run: echo $SCOPE
+            - run: echo "$SCOPE"
