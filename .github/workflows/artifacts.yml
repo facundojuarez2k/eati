@@ -37,6 +37,6 @@ jobs:
               run: ls
             - name: Test program
               run: |
-                  chmod +x ./main
-                  exit_code=$(./main)
+                  ./main
+                  exit_code=$?
                   if [ $exit_code -eq 0 ]; then echo "Éxito"; else echo "Error"; fi;
