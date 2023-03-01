@@ -1,0 +1,40 @@
+on:
+    push:
+        branches: [workflow6-artifacts]
+
+env:
+    ARTIFACT_NAME: cprogram
+    FILE_NAME: main
+    UPLOAD_PATH: ./${{ env.FILE_NAME }}
+
+jobs:
+    build:
+        name: "Compile main.c"
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Checkout"
+              uses: actions/checkout@v3
+              with:
+                  repository: jmoyano/cautious-meme
+                  ref: main
+            - name: "Compile"
+              run: gcc main.c -o ${{ FILE_NAME }}
+            - name: "Upload artifact"
+              uses: actions/upload-artifact@v3
+              with:
+                  name: ${{ ARTIFACT_NAME }}
+                  path: ${{ UPLOAD_PATH }}
+    test:
+        name: "Test artifact"
+        needs: [build]
+        steps:
+          - name: "Download artifact"
+            uses: actions/download-artifact@v3
+            with:
+              name: ${{ ARTIFACT_NAME }}
+          - name: Print directory
+            run: ls
+          - name: Test program
+            run: |
+              exit_code=$(./main)
+              if [ $exit_code -eq 0 ]; then echo "Éxito"; else echo "Error"; fi;
