@@ -5,7 +5,7 @@ on:
 env:
     ARTIFACT_NAME: cprogram
     FILE_NAME: main
-    UPLOAD_PATH: ./main.c
+    UPLOAD_PATH: ./${{ env.FILE_NAME }}
 
 jobs:
     build:
@@ -18,12 +18,12 @@ jobs:
                   repository: jmoyano/cautious-meme
                   ref: main
             - name: "Compile"
-              run: gcc main.c -o ${{ FILE_NAME }}
+              run: gcc main.c -o ${{ env.FILE_NAME }}
             - name: "Upload artifact"
               uses: actions/upload-artifact@v3
               with:
-                  name: ${{ ARTIFACT_NAME }}
-                  path: ${{ UPLOAD_PATH }}
+                  name: ${{ env.ARTIFACT_NAME }}
+                  path: ${{ env.UPLOAD_PATH }}
     test:
         name: "Test artifact"
         needs: [build]
@@ -31,7 +31,7 @@ jobs:
             - name: "Download artifact"
               uses: actions/download-artifact@v3
               with:
-                  name: ${{ ARTIFACT_NAME }}
+                  name: ${{ env.ARTIFACT_NAME }}
             - name: Print directory
               run: ls
             - name: Test program
