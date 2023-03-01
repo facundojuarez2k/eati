@@ -17,7 +17,8 @@ jobs:
             JOB_VARIABLE: Job variable
             SCOPE: Scope (Job)
         steps:
-            - env:
+            - name: Print multiline
+              env:
                   STEP_VARIABLE: Step variable
                   SCOPE: Scope (Step)
               run: |
@@ -25,8 +26,10 @@ jobs:
                   echo "$JOB_VARIABLE"
                   echo "$STEP_VARIABLE"
                   echo "$SCOPE"
-            - run: echo "$SCOPE"
+            - name: Print job level SCOPE env variable
+              run: echo "$SCOPE"
     job2:
         runs-on: ubuntu-latest
         steps:
-            - run: echo "$SCOPE"
+            - name: Print workflow level SCOPE env variable
+              run: echo "$SCOPE"
